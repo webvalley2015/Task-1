@@ -2,7 +2,7 @@
 Data and scripts related to Task 1.
 
 Waiting on:
-1) Data&metadata&scripts of groups 3&4.
-2) Metadata&scripts of group 2.
+ * Data&metadata&scripts of groups 3&4.
+ * Metadata&scripts of group 2.
 
-You can check how group 1 did it in their directory(by the way, good job!)
+You can check how group 1 did it in their directory (by the way, good job!)
