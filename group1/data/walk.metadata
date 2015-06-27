@@ -1,0 +1,10 @@
+Activity= Walking
+Group= 1
+Duration= 30s
+Sampling Frequency= 100Hz
+Accelerometer FullScale= 8g
+Gyroscope Fullscale= 2000dps
+Position of the sensor= Upper arm, 5cm from should 
+Acquisition Software= Sensor docking station
+Android Version= 5.0.2
+
