@@ -18,7 +18,7 @@ ll=[]
 ok_data = pd.DataFrame()
 curr_graph = 0
 for i in labels:
-    filename = './data/'+i+'.txt'
+    filename = '../data/'+i+'.txt'
     raw_data=np.genfromtxt(filename, delimiter=',')
     raw_data = raw_data[:,2:]
     #f.raw_plot(raw_data, curr_graph)
@@ -43,7 +43,7 @@ if (a=='f'):
 #----------------FIT FINISH!!!!
 else:
 	f.predict_plot(in_data)	
-	psljlaòsdfk<sopfjpèo
+
 
 
 #return ((clftree, clfsvm, clfforest, clfadaboost))
