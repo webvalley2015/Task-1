@@ -37,9 +37,9 @@ in_data = pre_data[pre_data.columns[:-1]]
 print "do you want to fit the model or to predict some data? (just PLEASE press 'f' OR 'p')"
 choiche = input()
 
-if (a=='f'):
+if (choiche=='f'):
 #--------------FIT!!!!-----------
-	f.justFitEvery1(dampython, dampython)
+	f.justFitEvery1(sol, in_data)
 #----------------FIT FINISH!!!!
 else:
 	f.predict_plot(in_data)	

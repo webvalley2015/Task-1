@@ -137,8 +137,10 @@ def cvDCT(raw_df, sol):
 def justFitEvery1 (label, data):
 	from sklearn import cross_validation
 
+	label = np.array(label)
+	data = np.array(data)	
 	#------DECISION TREE : BEGIN
-
+	
 	from sklearn.tree import DecisionTreeClassifier
 	clftree = DecisionTreeClassifier() 
 
@@ -149,11 +151,11 @@ def justFitEvery1 (label, data):
 	scores = cross_validation.cross_val_score(clftree,data,label,cv=5) 
 	labelsPredict=clftree.predict(data)
 
-	diz = {'STILL':1, 'STILL_ARM':2, 'WALK':3,'RUN':4}
+	'''diz = {'STILL':1, 'STILL_ARM':2, 'WALK':3,'RUN':4}
 
 	for i in range(len(labelsPredict)):
 		labelsPredict[i]=diz[labelsPredict[i]]
-	labelsPredict=np.array(labelsPredict[:].astype(int))
+	labelsPredict=np.array(labelsPredict[:].astype(int))'''
 
 	plt.plot(range(len(labelsPredict)), labelsPredict)
 
@@ -176,9 +178,10 @@ def justFitEvery1 (label, data):
 	clfsvm= clf.fit(x_train, l_train) #"FIT" THE  stuff
 	scores = cross_validation.cross_val_score(clfsvm,data,label,cv=5)
 	labelsPredict=clfsvm.predict(data)
-	for i in range(len(labelsPredict)):
+	
+	'''for i in range(len(labelsPredict)):
 		labelsPredict[i]=diz[labelsPredict[i]]
-	labelsPredict=np.array(labelsPredict[:].astype(int))
+	labelsPredict=np.array(labelsPredict[:].astype(int))'''
 	#msg = "the precision of the support vector machine is %6f \n " % (np.mean(scores))
 	#print msg
 	plt.figure()
@@ -198,9 +201,9 @@ def justFitEvery1 (label, data):
 	clfforest= clf.fit(x_train, l_train) #"FIT" THE  stuff	
 	scores = cross_validation.cross_val_score(clfforest,data,label,cv=5) 
 	labelsPredict=clfforest.predict(data)
-	for i in range(len(labelsPredict)):
+	'''for i in range(len(labelsPredict)):
 		labelsPredict[i]=diz[labelsPredict[i]]
-	labelsPredict=np.array(labelsPredict[:].astype(int))
+	labelsPredict=np.array(labelsPredict[:].astype(int))'''
 	#msg = "the precision of the random forest  is %6f \n" % (np.mean(scores)) 
 	#print msg
 	plt.figure()
@@ -221,9 +224,9 @@ def justFitEvery1 (label, data):
 	clfadaboost= clf.fit(x_train, l_train) #"FIT" THE  stuff	
 	scores = cross_validation.cross_val_score(clfadaboost,data,label,cv=5) 
 	labelsPredict=clfadaboost.predict(data)
-	for i in range(len(labelsPredict)):
+	'''for i in range(len(labelsPredict)):
 		labelsPredict[i]=diz[labelsPredict[i]]
-	labelsPredict=np.array(labelsPredict[:].astype(int))
+	labelsPredict=np.array(labelsPredict[:].astype(int))'''
 	#msg = "the precision of the adaboost  is %6f \n" % (mean(scores)) 
 	plt.figure()
 	plt.title( 'm.f.:adaboost, prec ='+ str( np.mean(scores) )  )    #??? how to lables and title the plot?
@@ -247,12 +250,15 @@ def justFitEvery1 (label, data):
  	
     
 
-def predict_plot(data):		
+def predict_plot(data):	
+	data = np.array(data)	
 	file_list=['decision_tree','svm','random_forest','adaboost']	
+	import cPickle
 	for i in file_list:
 		with open(i+'.pkl', 'rb') as fid:
-   			 gnb_loaded = cPickle.load(fid)
-		labelsPredict=np.array(labelsPredict[:].astype(int))
+   			 clf = cPickle.load(fid)
+		labelsPredict=np.array(data[:].astype(int))
+		labelsPredict=clf.predict(data)
 		#msg = "the precision of the adaboost  is %6f \n" % (mean(scores)) 
 		plt.figure()
 		plt.title(i)    #??? how to lables and title the plot?
