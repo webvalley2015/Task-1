@@ -239,7 +239,7 @@ def justFitEvery1 (label, data):
 	    cPickle.dump(clftree, fid)
 	with open('svm.pkl', 'wb') as fid:
 	    cPickle.dump(clfsvm, fid) 
-	with open('forest.pkl', 'wb') as fid:
+	with open('random_forest.pkl', 'wb') as fid:
 	    cPickle.dump(clfforest, fid) 
 	with open('adaboost.pkl', 'wb') as fid:
 	    cPickle.dump(clfadaboost, fid) 
@@ -247,19 +247,20 @@ def justFitEvery1 (label, data):
  	
     
 
-def predict_plot(data):	
+def predict_plot(data):		
+	file_list=['decision_tree','svm','random_forest','adaboost']	
 	for i in file_list:
 		with open(i+'.pkl', 'rb') as fid:
    			 gnb_loaded = cPickle.load(fid)
 		labelsPredict=np.array(labelsPredict[:].astype(int))
 		#msg = "the precision of the adaboost  is %6f \n" % (mean(scores)) 
 		plt.figure()
-		plt.title( 'm.f.:adaboost, prec ='+ str( np.mean(scores) )  )    #??? how to lables and title the plot?
+		plt.title(i)    #??? how to lables and title the plot?
 		plt.xlabel('time (0,5s)')
 		plt.ylabel('activities')
 		plt.plot(range(len(labelsPredict)), labelsPredict)
 		
-		   
+	plt.show()	   
 	    
     
     

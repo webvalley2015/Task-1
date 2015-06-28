@@ -42,7 +42,7 @@ if (a=='f'):
 	f.justFitEvery1(dampython, dampython)
 #----------------FIT FINISH!!!!
 else:
-	print 	
+	f.predict_plot(in_data)	
 	psljlaòsdfk<sopfjpèo
 
 
