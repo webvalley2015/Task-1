@@ -1,0 +1,9 @@
+Activity: running
+Group: 3
+Duration: 30s 
+Sampling Frequency : 100hz
+Accelerometer FullScale: 8g
+Gyroscope Fullscale: 2000dps
+Position of the sensor: right arm, external part (near the shoulder), facing with the led trough the external part, and downward the arm
+Acquisition Software: with usb cable and hands
+Android Version: not used
