@@ -1,18 +1,18 @@
 Activity:
-    
+    standing while moving arms
 Group:
-    
+    2
 Duration:
-    
+    60seconds
 Sampling Frequency:
-    
+    100Hz
 Accelerometer FullScale:
-    
+    8g
 Gyroscope Fullscale:
-    
+    2000dps
 Position of the sensor:
-     
+    on back 
 Acquisition Software:
-    
+    Sensor docking station
 Android Version:
-    
+    4.4 (KitKat)
