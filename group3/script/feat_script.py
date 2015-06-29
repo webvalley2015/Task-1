@@ -103,6 +103,7 @@ def raw_plot(data):
     plt.plot(data[:,[3,4,5]])
     plt.plot(data[:,[6,7,8]])
     #plt.title(labels)
+    plt.plot()
 
     
 def feat_barplot(x):

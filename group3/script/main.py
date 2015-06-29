@@ -40,7 +40,7 @@ choiche = input()
 if (choiche=='f'):
 #--------------FIT!!!!-----------
 	f.justFitEvery1(sol, in_data)
-#----------------FIT FINISH!!!!
+#---------------PREDICT
 else:
 	f.predict_plot(in_data)	
 
