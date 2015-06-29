@@ -136,6 +136,11 @@ def cvDCT(raw_df, sol):
     #--------------__!_!_!_!_!_!_!-!-!-!-!-!-!-!-!-!-!-!_!_
 
 def justFitEvery1 (label, data):
+	#this function takes in input a vector (numpy array) of labels (label) of dim. [n] where n is the number of processed (which means winodwed) istances (so, of course, label[i] contains the REAL label that corresponds to the activity the subject was doing at the x-th istance of data. The x-th istance of data can be translated in time with this equation: Time= x * 0,5  (s))
+	#the other vector (numpy array) this function takes in, data, is of the dimension (n,x) where n is the number of processed (which means winodwed) istances (see also comment before ) and x is the number of features we extracted
+
+	#this function output 8 things: for each (of the four) predictive model SVM, Decision tree, Random forest and adaboost ouptuts a file (.pkl) which contains the model, and a graph which shows the predictions of the label made with the given model, for each n (see comment before) istance of the processed data
+	 
 	from sklearn import cross_validation
 
 	label = np.array(label)
@@ -251,7 +256,15 @@ def justFitEvery1 (label, data):
  	
     
 
-def predict_plot(data):	
+def predict_plot(label, data):	
+#this func. predict the data given in (for the format of data, see the prevouis function, second comment) and plots the label prediction for each istance of the data.
+
+#the previous comment explained the main objective of this functuon. Due to educational aims, this functions picks also the label array in input, so that she can check with the cross validation the actual accuracy.
+
+#ps: thinking about a real use (on a phone mabye?) it's obvious we wouln't get labelled data. but since here we actually get labelled data, we can use those labels. 
+	label = np.array(label)
+	data = np.array(data)		
+	
 	data = np.array(data)	
 	file_list=['decision_tree','svm','random_forest','adaboost']	
 	import cPickle
@@ -261,13 +274,26 @@ def predict_plot(data):
 		labelsPredict=np.array(data[:].astype(int))
 		labelsPredict=clf.predict(data)
 		#msg = "the precision of the adaboost  is %6f \n" % (mean(scores)) 
+		sco = cross_validation.cross_val_score(clf,data,label,cv=5) 		
+		sco = np.mean(sco)	
+		sco = 100*sco
+		sco = "%2f" % (sco)	
 		plt.figure()
-		plt.title(i)    #??? how to lables and title the plot?
+		plt.title(i+'  , precision '+ sco)    #??? how to lables and title the plot?
 		plt.xlabel('time (0,5s)')
 		plt.ylabel('activities')
 		plt.plot(range(len(labelsPredict)), labelsPredict)
 		
 	plt.show()	   
 	    
-    
+'''
+here i try to explain what does n, x , and processed data means, and how to relate them with the REAL TIME
+
+pose we have a sampling frequency of 100 Hz, and for example, 3000 RAW collected data
+when you process it with the windowing, you reduce the number of istantces by a factor equal, more or less, to the window shift (the more or less is related to the fact that the lenght of the raw data is not multiple of the window shift, but actually, in the worst cae, you can lost 0,99s of recordings for each file)
+
+so when i said n i intended the number of processed data (of windows)
+
+with the vector label[] containing n istances, --> time(i) = i * window shift , for each i in range [0,n)  
+'''   
     

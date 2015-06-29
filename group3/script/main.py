@@ -42,7 +42,7 @@ if (choiche=='f'):
 	f.justFitEvery1(sol, in_data)
 #---------------PREDICT
 else:
-	f.predict_plot(in_data)	
+	f.predict_plot(sol, in_data)	
 
 
 
